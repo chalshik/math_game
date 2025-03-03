@@ -159,7 +159,7 @@
 
     <script>
         function contacts_table(){
-            fetch('http://127.0.0.1:5000/all_users').then(response => response.json()).then(data => {
+            fetch('https://chigurick.pythonanywhere.com/all_users').then(response => response.json()).then(data => {
                 let contacts = data;
                 let contacts_list = document.querySelector('.contacts ul');
                 console.log(contacts)
@@ -187,7 +187,7 @@
     document.getElementById('chat-messages').innerHTML = `<p>Loading messages...</p>`;
     
     // Fetch messages from the backend
-    fetch(`http://127.0.0.1:5000/get_messages?receiver=${encodeURIComponent(contact)}`, {
+    fetch(`https://chigurick.pythonanywhere.com/get_messages?receiver=${encodeURIComponent(contact)}`, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',  // Ensure the response is in JSON
@@ -219,7 +219,7 @@
 function sendMessage() {
     const message = document.getElementById('message-input').value;
     if (message.trim()) {
-        fetch("http://127.0.0.1:5000/send_message",{
+        fetch("https://chigurick.pythonanywhere.com/send_message",{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
