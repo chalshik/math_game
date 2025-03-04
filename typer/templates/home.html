@@ -6,243 +6,270 @@
     <title>Chat App</title>
     <style>
         body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f0f0f0;
-}
-.sent-message {
-    background-color: #007bff;
-    color: white;
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 5px;
-    text-align: right;
-    max-width: 70%;
-    margin-left: auto;
-}
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e5ddd5;
+        }
 
-.received-message {
-    background-color: #f1f1f1;
-    color: black;
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 5px;
-    text-align: left;
-    max-width: 70%;
-    margin-right: auto;
-}
+        .chat-container {
+            display: flex;
+            width: 90%;
+            height: 90%;
+            max-width: 1200px;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
 
-.chat-container {
-    display: flex;
-    width: 80%;
-    height: 80%;
-    border-radius: 8px;
-    overflow: hidden;
-    background-color: #fff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+        .contacts {
+            width: 30%;
+            background-color: #075e54;
+            color: #fff;
+            padding: 20px;
+            overflow-y: auto;
+            position: relative;
+            border-right: 1px solid #ccc;
+        }
 
-.contacts {
-    width: 30%;
-    background-color: #2d3e50;
-    color: #fff;
-    padding: 20px;
-    overflow-y: auto;
-}
+        .contacts ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
 
-.contacts ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
+        .contact {
+            padding: 15px;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            transition: background-color 0.3s;
+        }
 
-.contact {
-    padding: 10px;
-    margin: 10px 0;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-}
+        .contact:hover {
+            background-color: #128c7e;
+        }
 
-.contact:hover {
-    background-color: #1f2a34;
-}
+        .add-contact {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: #25d366;
+            border: none;
+            color: white;
+            font-size: 18px;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
 
-.chat-window {
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    background-color: #f9f9f9;
-}
+        .chat-window {
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+            background-color: #f1f1f1;
+        }
 
-.chat-header {
-    background-color: #4c5a70;
-    padding: 20px;
-    color: #fff;
-    text-align: center;
-}
+        .chat-header {
+            background-color: #075e54;
+            padding: 20px;
+            color: #fff;
+            text-align: center;
+        }
 
-.chat-messages {
-    padding: 20px;
-    flex: 1;
-    overflow-y: auto;
-    background-color: #f1f1f1;
-    margin-bottom: 10px;
-}
+        .chat-messages {
+            padding: 20px;
+            flex: 1;
+            overflow-y: auto;
+            background-color: #fff;
+        }
 
-.message {
-    background-color: #007bff;
-    color: white;
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 5px;
-}
+        .sent-message {
+            background-color: #dcf8c6;
+            color: black;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: right;
+            max-width: 70%;
+            margin-left: auto;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
 
-.chat-input {
-    display: flex;
-    padding: 10px;
-    background-color: #e0e0e0;
-    border-top: 1px solid #ddd;
-}
+        .received-message {
+            background-color: #fff;
+            color: black;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: left;
+            max-width: 70%;
+            margin-right: auto;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
 
-.chat-input input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
+        .chat-input {
+            display: flex;
+            padding: 10px;
+            background-color: #fff;
+            border-top: 1px solid #ddd;
+        }
 
-.chat-input button {
-    padding: 10px;
-    background-color: #4c5a70;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 10px;
-}
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
 
-.chat-input button:hover {
-    background-color: #3a4a5d;
-}
+        .chat-input button {
+            padding: 10px;
+            background-color: #075e54;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
 
+        /* Make the app responsive */
+        @media (max-width: 768px) {
+            .chat-container {
+                flex-direction: column;
+                height: auto;
+                width: 100%;
+            }
+
+            .contacts {
+                width: 100%;
+                height: 40%;
+                border-right: none;
+            }
+
+            .chat-window {
+                width: 100%;
+                height: 60%;
+            }
+
+            .sent-message,
+            .received-message {
+                font-size: 16px;
+            }
+
+            .chat-header {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contacts {
+                padding: 10px;
+            }
+
+            .add-contact {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="chat-container">
-        <!-- Contacts Sidebar -->
         <div class="contacts">
-            <ul>
-               
-            </ul>
+            <h3>Contacts</h3>
+            <ul id="contacts-list"></ul>
+            <button class="add-contact" onclick="addContact()">+</button>
         </div>
-
-        <!-- Chat Window -->
         <div class="chat-window">
             <div class="chat-header">
                 <h2 id="contact-name">Select a contact</h2>
             </div>
-            <div class="chat-messages" id="chat-messages">
-                <!-- Messages will appear here -->
-            </div>
+            <div class="chat-messages" id="chat-messages"></div>
             <div class="chat-input">
                 <input type="text" placeholder="Type a message..." id="message-input">
                 <button onclick="sendMessage()">Send</button>
             </div>
         </div>
     </div>
-
     <script>
-        function contacts_table(){
-            fetch('https://chigurick.pythonanywhere.com/all_users').then(response => response.json()).then(data => {
-                let contacts = data;
-                let contacts_list = document.querySelector('.contacts ul');
-                console.log(contacts)
-                if(contacts.length === 0){
-                    let contact_element = document.createElement('li');
-                    contact_element.classList.add('contact');
-                    contact_element.innerText = 'No contacts';
-                    contacts_list.appendChild(contact_element);
-                }else{
-                contacts.forEach(contact => {
+        function contacts_table() {
+            fetch('https://chigurick.pythonanywhere.com/all_users')
+            .then(response => response.json())
+            .then(data => {
+                let contacts_list = document.getElementById('contacts-list');
+                contacts_list.innerHTML = '';
+                data.forEach(contact => {
                     let contact_element = document.createElement('li');
                     contact_element.classList.add('contact');
                     contact_element.innerText = contact;
                     contact_element.onclick = () => switchChat(contact);
                     contacts_list.appendChild(contact_element);
-                })};
+                });
             });
         }
         contacts_table();
+        
         function switchChat(contact) {
-    // Update the contact name in the DOM
-    document.getElementById('contact-name').innerText = contact;
-    
-    // Display a loading message while fetching data
-    document.getElementById('chat-messages').innerHTML = `<p>Loading messages...</p>`;
-    
-    // Fetch messages from the backend
-    fetch(`https://chigurick.pythonanywhere.com/get_messages?receiver=${encodeURIComponent(contact)}`, {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',  // Ensure the response is in JSON
+            document.getElementById('contact-name').innerText = contact;
+            document.getElementById('chat-messages').innerHTML = `<p>Loading messages...</p>`;
+            fetch(`https://chigurick.pythonanywhere.com/get_messages?receiver=${encodeURIComponent(contact)}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('chat-messages').innerHTML = data.map(({ message, type }) => {
+                    return `<p class="${type === 'sent' ? 'sent-message' : 'received-message'}">${message}</p>`;
+                }).join('');
+            });
         }
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Check if there are messages
-        if (data.length > 0) {
-            // Map over the messages and distinguish between sent and received
-            const messages = data.map(({ message, type }) => {
-                const className = type === 'sent' ? 'sent-message' : 'received-message';
-                return `<p class="${className}">${message}</p>`;
-            }).join('');
-            document.getElementById('chat-messages').innerHTML = messages;
-        } else {
-            document.getElementById('chat-messages').innerHTML = `<p>No messages found.</p>`;
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        document.getElementById('chat-messages').innerHTML = `<p>Error loading messages. Please try again.</p>`;
-    });
-}
-
-
-
-
-function sendMessage() {
-    const message = document.getElementById('message-input').value;
-    if (message.trim()) {
-        fetch("https://chigurick.pythonanywhere.com/send_message",{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                message: message,
-                receiver: document.getElementById('contact-name').innerText
-            })
-        }).then(response => response.json()).then(data => {
-            if(data.status === 'success'){
-                // Append sent message directly
-                const messageContainer = document.createElement('p');
-                messageContainer.classList.add('sent-message');
-                messageContainer.innerText = message;
-                document.getElementById('chat-messages').appendChild(messageContainer);
-                document.getElementById('message-input').value = ''; // Clear input after sending
-            } else {
-                alert(data.message);
+        
+        function sendMessage() {
+            const message = document.getElementById('message-input').value;
+            if (message.trim()) {
+                fetch("https://chigurick.pythonanywhere.com/send_message", {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        message: message,
+                        receiver: document.getElementById('contact-name').innerText
+                    })
+                }).then(() => {
+                    let messageContainer = document.createElement('p');
+                    messageContainer.classList.add('sent-message');
+                    messageContainer.innerText = message;
+                    document.getElementById('chat-messages').appendChild(messageContainer);
+                    document.getElementById('message-input').value = '';
+                });
             }
-        });
-    }
-}
+        }
 
+        function addContact() {
+            let newContact = prompt("Enter new contact name:");
+            if (newContact) {
+                fetch("https://chigurick.pythonanywhere.com/search_contact", {
+                    method: 'POST', // Change method to POST
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({contact: newContact}) // Body content
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'error') {
+                        alert(data.message);
+                        return;
+                    } else {
+                        alert(data.message);
+                        let contacts_list = document.getElementById('contacts-list');
+                        let contact_element = document.createElement('li');
+                        contact_element.classList.add('contact');
+                        contact_element.innerText = newContact;
+                        contact_element.onclick = () => switchChat(newContact);
+                        contacts_list.appendChild(contact_element);
+                    }
+                })
+            }
+        }
     </script>
 </body>
 </html>
